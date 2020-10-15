@@ -1,1 +1,1 @@
-192.168.204.210   ansible_connexion=ssh
+192.168.204.210   ansible_connexion=ssh ansible_user=vagrant
