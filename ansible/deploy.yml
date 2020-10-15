@@ -1,0 +1,9 @@
+---
+
+- hosts: all
+  become: yes
+  strategy: debug
+
+  roles:
+     - tomcat9
+     - jenkins
