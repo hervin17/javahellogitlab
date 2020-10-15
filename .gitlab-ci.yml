@@ -32,7 +32,6 @@ test_job:
 package_job:
   stage: package
   script:
-    - cd ${SRC_DIR}
     - mvn clean install -DskipTests=true $MAVEN_OPTS $MAVEN_CLI_OPTS 
     - if [[ ! -r "target/${JAR_NAME}" ]]; then mv target/*.jar target/${JAR_NAME}; fi
   artifacts:
