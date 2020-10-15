@@ -19,14 +19,15 @@ build_job:
   stage: build
   script:
     - mvn compile $MAVEN_OPTS $MAVEN_CLI_OPTS
+  image: openjdk:8-alpine
 
 test_job:
   stage: test
   script:
     - mvn test $MAVEN_OPTS $MAVEN_CLI_OPTS
-
+  image: openjdk:8-alpine
 package_job:
   stage: package
   script:
     - mvn package -DskipTests=true $MAVEN_OPTS $MAVEN_CLI_OPTS
-  
+  image: openjdk:8-alpine
