@@ -5,6 +5,7 @@ variables:
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
   TARGET_DIR: ${CI_PROJECT_DIR}/${SRC_DIR}/target
   JAR_NAME: ${APP_NAME}.jar
+  CATALINA_HOME: /opt/apache-tomcat-9.0.38
 
 cache:
   paths:
@@ -55,4 +56,4 @@ deploy_job:
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" >> ~/.ssh/config'
   script:
     - cd ansible
-    - ansible-playbook -e target_dir=${TARGET_DIR} -e jar_file=${JAR_NAME}  deploy.yml 
+    - ansible-playbook -e target_dir=${TARGET_DIR} -e jar_file=${JAR_NAME} -e catalina_home=${CATALINA_HOME} deploy.yml 
