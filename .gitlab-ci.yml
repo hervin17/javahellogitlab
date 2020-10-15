@@ -1,19 +1,27 @@
 ---
 variables:
-  SRC_DIR: "src"
+  SRC_DIR: "src/"
   MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
-
-
+  TARGET_DIR: target/
+  JAR_NAME: ${APP_NAME}.jar
 
 cache:
   paths:
     - .m2/repository
 
+before_script:
+  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
 stages:
   - build
   - test
   - package
+  - deploy
 
 build_job:
   stage: build
@@ -26,8 +34,15 @@ test_job:
   script:
     - mvn test $MAVEN_OPTS $MAVEN_CLI_OPTS
   image: maven:3-jdk-8
+
 package_job:
   stage: package
   script:
     - mvn package -DskipTests=true $MAVEN_OPTS $MAVEN_CLI_OPTS
   image: maven:3-jdk-8
+
+deploy_job:
+  stage: deploy
+  script:
+    - cd ansible
+    - ansible-playbook -e target_dir=${TARGET_DIR} -e jar_file=${JAR_NAME} deploy.yml 

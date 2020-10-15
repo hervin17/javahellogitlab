@@ -4,6 +4,11 @@
   become: yes
   strategy: debug
 
-  roles:
-     - tomcat9
-     - jenkins
+  tasks:
+    - name: Copier  le jar dans le repertoire des application de tomcat
+      copy:
+        src:   "{{ target_dir }}/{{ jar_file }}"
+        dest:  $CATALINA_HOME/webapp
+
+        
+
