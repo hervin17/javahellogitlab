@@ -37,7 +37,6 @@ package_job:
   script:
     - cd ${SRC_DIR}
     - mvn package -DskipTests=true $MAVEN_OPTS $MAVEN_CLI_OPTS 
-    - if [[ ! -r "target/${JAR_NAME}" ]]; then mv target/*.jar target/${JAR_NAME}; fi
   artifacts:
     paths:
       - ${TARGET_DIR}/${JAR_NAME}
