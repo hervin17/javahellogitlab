@@ -20,12 +20,14 @@ stages:
 build_job:
   stage: build
   script:
+    - cd ${SRC_DIR}
     - mvn compile $MAVEN_OPTS $MAVEN_CLI_OPTS
   image: maven:3-jdk-8
 
 test_job:
   stage: test
   script:
+    - cd ${SRC_DIR}
     - mvn test $MAVEN_OPTS $MAVEN_CLI_OPTS
   image: maven:3-jdk-8
 
