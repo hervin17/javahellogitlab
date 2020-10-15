@@ -8,7 +8,7 @@
     - name: Copier  le jar dans le repertoire des application de tomcat
       copy:
         src:   "{{ target_dir }}/{{ jar_file }}"
-        dest:  "{{catalina_home }}/webapps"
+        dest:  "{{catalina_home }}/webapps/"
 
         
 
