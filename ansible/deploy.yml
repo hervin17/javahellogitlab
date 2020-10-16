@@ -10,7 +10,5 @@
         src:   "{{ target_dir }}/{{ jar_file }}"
         dest:  "{{catalina_home }}/webapps/"
  
-    - name: restart tomcat
-      service: name=tomcat status=restart
 
         
