@@ -9,6 +9,20 @@
       copy:
         src:   "{{ target_dir }}/{{ jar_file }}"
         dest:  "{{catalina_home }}/webapps/"
+    - name: definir dossier pour  la variable hello_home 
+      file: 
+        path: /var/lib/helloworld
+        state: directory
+        mode: '0777'
+    - name: ajout de la variable d'env au /conf/context de tomcat
+      blockinfile:
+        path: "{{ catalina_home }}/conf/context.xml"
+        insertbefore: "</Context>"
+        block:
+          <Environment name="HELLO_HOME" value="/var/lib/helloworld" type="java.lang.String" />
+
+    - name: restart tomcat
+      service: name=tomcat status=restart
 
         
 
