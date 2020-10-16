@@ -20,7 +20,7 @@
     <!-- =============================================================== -->
     <build>
         <!-- repertoire du fichier jar ou war -->
-        <directory>${project.basedir}/output</directory>
+    <!--    <directory>${project.basedir}/output</directory> -->
         <!-- Gestion des plugins (version) -->
         <pluginManagement>
             <plugins>
@@ -32,20 +32,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <!-- Création du Manifest pour la définition de la classe Main -->
-                        <manifest>
-                            <mainClass>org.exemple.demo.App</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
 <!-- =============================================================== -->
