@@ -8,7 +8,7 @@
   <groupId>org.exemple.demo</groupId>
   <artifactId>mon-appli</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
  <!-- ===== Informations générales ===== -->
   <name>mon-appli</name>
@@ -18,21 +18,21 @@
 <!-- =============================================================== -->
     <!-- Build -->
     <!-- =============================================================== -->
-    <build>
+<!--    <build> -->
         <!-- repertoire du fichier jar ou war -->
     <!--    <directory>${project.basedir}/output</directory> -->
         <!-- Gestion des plugins (version) -->
-        <pluginManagement>
-            <plugins>
+  <!--      <pluginManagement>  
+            <plugins>   -->
                 <!-- Plugin responsable de la génération du fichier wAR -->
-                <plugin>
+    <!--            <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>3.1.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
-    </build>
+    </build>   -->
 
 <!-- =============================================================== -->
     <!-- Properties -->
